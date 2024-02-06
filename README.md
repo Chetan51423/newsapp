@@ -1,3 +1,12 @@
+# News Nest 
+
+> This is news app create using React, HTML, css and javascript.
+> It helps the user to see category wise news 
+> It increse the user experience by presenting the new by category.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
