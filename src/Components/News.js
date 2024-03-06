@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewsItems from './NewsItems'
 import Spinner from './Spinner'
+import axios from 'axios'
 // import PropTypes from 'prop-types'
 export class News extends Component {
 
@@ -20,23 +21,46 @@ export class News extends Component {
         document.title=`${this.capitalizeFirstLetter(this.props.category)}-NewsNest`
     }
 
+    // async updateNews()
+    // {
+    //     const xurl = `https://corsproxy.org/?https%3A%2F%2Fnewsapi.org%2Fv2%2Ftop-headlines%3Fcountry%3D${this.props.country}%26category%3D${this.props.category}%26apikey%3D2a96c43e0d6c4f1bb755112cc1d8488e%26page%3D${this.state.page}%26pageSize%3D${this.props.pageSize}`;
+    //     this.setState({loading:true})
+    //     let data = await fetch(xurl);
+    //     let parseData = await data.json();
+    //     let temp = parseData;
+    //     temp.key3 = 'value3';
+    //     temp.key4 = 'value4';
+    //     console.log(temp)
+    //     this.setState({
+    //         articles:parseData.articles,
+    //         totalResults: parseData.totalResults,
+    //         loading:false
+            
+    //     }) 
+    // }
+
     async updateNews()
     {
-        const xurl = `https://corsproxy.org/?https%3A%2F%2Fnewsapi.org%2Fv2%2Ftop-headlines%3Fcountry%3D${this.props.country}%26category%3D${this.props.category}%26apikey%3D2a96c43e0d6c4f1bb755112cc1d8488e%26page%3D${this.state.page}%26pageSize%3D${this.props.pageSize}`;
-        
+        const url = `https://corsproxy.org/?https%3A%2F%2Fnewsapi.org%2Fv2%2Ftop-headlines%3Fcountry%3D${this.props.country}%26category%3D${this.props.category}%26apikey%3D2a96c43e0d6c4f1bb755112cc1d8488e%26page%3D${this.state.page}%26pageSize%3D${this.props.pageSize}`
+        this.setState({loading:true})
+
+        let data = await axios.get(url);
+        let parseData = data.data;
+        console.log(parseData)
+        this.setState({
+            articles:parseData.articles,
+            totalResults:parseData.totalResults,
+            loading:false
+        })
+
+    }
+
         // const xurl = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=2a96c43e0d6c4f1bb755112cc1d8488e&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         // https://corsproxy.org/?https%3A%2F%2Fnewsapi.org%2Fv2%2Ftop-headlines%3Fcountry%3D${this.props.country}%26category%3D${this.props.category}%26apikey%3D2a96c43e0d6c4f1bb755112cc1d8488e%26page%3D${this.state.page}%26pageSize%3D${this.props.pageSize}
         
-        this.setState({loading:true})
-        let data = await fetch(xurl);
-        let parseData = await data.json();
-        this.setState({
-            articles:parseData.articles,
-            totalResults: parseData.totalResults,
-            loading:false
-            
-        }) 
-    }
+
+
+
     async componentDidMount()  //------- this is life cycle method
     {
         
