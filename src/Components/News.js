@@ -4,20 +4,6 @@ import Spinner from './Spinner'
 // import PropTypes from 'prop-types'
 export class News extends Component {
 
-    // static defaultProps=
-    // {
-    //     country:'in',
-    //     pageSize: 8,
-    //     catgory:'science'
-    // }
-
-    // static propTypes =
-    // {
-    //     country: PropTypes.string,
-    //     pageSize:PropTypes.number,
-    //     catgory:PropTypes.string
-    // }
-
     capitalizeFirstLetter = (string)=>
     {
         return string.charAt(0).toUpperCase() + string.slice(1);
